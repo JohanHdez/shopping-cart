@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { StoreService } from 'src/app/shared/services/store.service';
+import { addProduct, removeProduct } from 'src/app/app.actions';
 
 @Component({
   selector: 'app-header',
@@ -16,18 +18,21 @@ export class HeaderComponent implements OnInit {
   count$: Observable<number>;
   session$: Observable<any>;
 
-  count = []
+  count = 0;
 
   constructor(
     private authService: AuthService,
     private store: Store<{ count: number, auth: any }>,
-    private storecount: Store<{cart:any}>
+    private storecount: Store<{cart:any}>,
+    private storeSrvice: StoreService
   ) {
     this.countCart$ = this.storecount.select('cart')
     this.countCart$.subscribe(val => {
-      this.count.push(val);
-      this.count.filter(Boolean);
+      const data: any = val;
+      this.count = data.products.length;
+      
     });
+    this.getCart();
     this.session$ = store.select('auth');
     this.session$.subscribe(value => this.session = value);
     
@@ -41,6 +46,20 @@ export class HeaderComponent implements OnInit {
   signOut(): void {
     this.isLoggedIn = false;
     this.authService.signOut();
+  }
+
+  getCart() {
+    this.storeSrvice.getCart().subscribe(val  => {
+      this.storeSrvice.GetProductsCart(val.docs[0].id).subscribe(item => {
+        const data: any = item.data()
+        data.products.forEach(element => {
+          this.store.dispatch(addProduct({produts: element}))
+        });
+       this.count = data.products.length;
+      })
+    });
+    
+    
   }
 
 }

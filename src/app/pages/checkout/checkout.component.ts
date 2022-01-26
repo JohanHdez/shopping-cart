@@ -16,29 +16,34 @@ export class CheckoutComponent implements OnInit {
 
   carts = [];
   cutValue = 1;
-  cart: Observable<Array<any>>
+  cart: Observable<any[]>
+  showproducts = []
   cartsList
   constructor(private store: Store<{cart:any}>, private storeSrvice: StoreService, public afs: AngularFirestore,  ) {
-    this.cart = this.store.select('cart');
-    this.cart.subscribe(val => {
-      this.cartsList = this.getCart()
-        this.carts = val;
-    });
+    store.select('cart').subscribe(val => {
+      console.log('11', val);
+      this.showproducts = val.products;
+    })
+    this.getCart()
    }
 
   ngOnInit(): void {
-    this.getCart();
+   
   }
 
 
   removeFromCart(product) {
-    this.carts.forEach((element, index) => {
-      if (element.id === product.id) {
-        this.carts.splice(index, 1);
-      }
+    console.log('...', this.showproducts);
+    const data = this.showproducts.filter(item => {
+      console.log(item.id, product.id);
+      console.log(item.id != product.id);
+      return item.id != product.id
     })
+    
+    console.log('...',  data);
+    
     this.storeSrvice.deleteCartData(product)
-    this.store.dispatch(removeProduct({produts: this.carts}))
+    this.store.dispatch(removeProduct({produts: data}))
   }
 
   shoppingArticle(product) {
@@ -49,10 +54,14 @@ export class CheckoutComponent implements OnInit {
     this.storeSrvice.getCart().subscribe(val  => {
       this.storeSrvice.GetProductsCart(val.docs[0].id).subscribe(item => {
         const data: any = item.data()
-        this.carts = data.products;
+        if(data.products.length == 0){
+          data.products.forEach(element => {
+            this.store.dispatch(addProduct({produts: element}))
+          });
+        }
       })
     });
-    this.cartsList.forEach(element => this.store.dispatch(addProduct({produts: element})))
+    
     
   }
 

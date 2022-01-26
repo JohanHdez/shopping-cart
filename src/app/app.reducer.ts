@@ -20,7 +20,7 @@ const _authReducer = createReducer(
 const _cartsReducer = createReducer(
   initialStateCarts,
   on(addProduct, (state, {produts}) => ({products:[...state.products, produts]})),
-  on(removeProduct, (state, {produts}) => ({products: [state.products = produts]}))
+  on(removeProduct, (state, {produts}) => ({products: produts}))
 );
  
 export function authReducer(state: any, action: any) {

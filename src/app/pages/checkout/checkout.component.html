@@ -1,4 +1,4 @@
-<div *ngFor="let cart of carts">
+<div *ngFor="let cart of showproducts">
   <nz-card style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
     <nz-card-meta nzTitle="{{cart.name}}" nzDescription="Ingrese la cantidad deseada" >
   </nz-card-meta>
