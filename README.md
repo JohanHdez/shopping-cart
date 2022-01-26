@@ -1,27 +1,28 @@
 # ShoppingCart
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+Este proyecto se generó con [Angular CLI](https://github.com/angular/angular-cli) version 11.0.1.
+- Diseño con  [NgZorro](https://ng.ant.design/docs/introduce/en)
+- Base de datos firebase
+- Manejo de estado con [NGRX](https://ngrx.io/)
+
+## Funcionalidad
+- Login con correo
+- Registro
+- Sección del carrito.
+- Agregar, eliminar y modificar productos al carrito.
+- Crear una orden con los productos seleccionados.
+
+## Capturas
+- BD
+![BD](https://firebasestorage.googleapis.com/v0/b/shopping-cart-ce288.appspot.com/o/BD_firebase.png?alt=media&token=d0317070-540d-4ca0-b9ab-a430589a41fd)
+- Frontend
+![APP](https://firebasestorage.googleapis.com/v0/b/shopping-cart-ce288.appspot.com/o/app_tul.png?alt=media&token=fb117859-7e4b-4b5f-b465-aad7b5e748ae)
+![shopping](https://firebasestorage.googleapis.com/v0/b/shopping-cart-ce288.appspot.com/o/carrito.png?alt=media&token=a994f8fb-f140-48cd-8cdc-1bd4e07a9224)
+
+## Prueba en vivo
+
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Ejecute `ng serve` para levantar el servidor. Ingrese a `http://localhost:4200/`. La aplicación se recargará automáticamente si cambia alguno de los archivos de origen.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
