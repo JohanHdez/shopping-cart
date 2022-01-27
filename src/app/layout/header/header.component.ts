@@ -32,12 +32,15 @@ export class HeaderComponent implements OnInit {
       this.count = data.products.length;
       
     });
-    this.getCart();
     this.session$ = store.select('auth');
-    this.session$.subscribe(value => this.session = value);
-    
-    this.isLoggedIn = this.authService.isLoggedIn;
-    if(this.isLoggedIn) this.user = this.authService.user;
+    this.session$.subscribe(value => {
+      this.session = value
+      this.isLoggedIn = value.isLoggedIn;
+      if(this.isLoggedIn) {
+        this.user = value.user;
+        this.getCart(value.user.uid);
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -48,8 +51,8 @@ export class HeaderComponent implements OnInit {
     this.authService.signOut();
   }
 
-  getCart() {
-    this.storeSrvice.getCart().subscribe(val  => {
+  getCart(uid=null) {
+    this.storeSrvice.getCart(uid).subscribe(val  => {
       this.storeSrvice.GetProductsCart(val.docs[0].id).subscribe(item => {
         const data: any = item.data()
         data.products.forEach(element => {

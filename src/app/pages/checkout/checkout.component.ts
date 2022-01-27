@@ -21,7 +21,6 @@ export class CheckoutComponent implements OnInit {
   cartsList
   constructor(private store: Store<{cart:any}>, private storeSrvice: StoreService, public afs: AngularFirestore,  ) {
     store.select('cart').subscribe(val => {
-      console.log('11', val);
       this.showproducts = val.products;
     })
     this.getCart()
@@ -33,15 +32,9 @@ export class CheckoutComponent implements OnInit {
 
 
   removeFromCart(product) {
-    console.log('...', this.showproducts);
     const data = this.showproducts.filter(item => {
-      console.log(item.id, product.id);
-      console.log(item.id != product.id);
       return item.id != product.id
     })
-    
-    console.log('...',  data);
-    
     this.storeSrvice.deleteCartData(product)
     this.store.dispatch(removeProduct({produts: data}))
   }

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { createSession, addProduct, removeProduct} from './app.actions';
+import { createSession, addProduct, removeProduct, removeSession} from './app.actions';
  
 export const initialState = 0;
 
@@ -14,7 +14,8 @@ export const initialStateCarts:any = {
  
 const _authReducer = createReducer(
   initialStateAuth,
-  on(createSession, (state) => [...state, state.user]),
+  on(createSession, (state, {user}) => ({user: user, isLoggedIn: true})),
+  on(removeSession, (state) => ({user: null, isLoggedIn: false})),
 );
 
 const _cartsReducer = createReducer(

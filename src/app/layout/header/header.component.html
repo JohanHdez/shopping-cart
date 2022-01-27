@@ -4,9 +4,9 @@
   </div>
   <ul nz-menu nzMode="horizontal">
     <li class="menu__option" nz-menu-item><a [routerLink]="['/store']" routerLinkActive="router-link-active"> Productos</a></li>
-    <li class="menu__option" nz-menu-item>
+    <li  *ngIf="isLoggedIn"  class="menu__option" nz-menu-item>
         <nz-badge [nzCount]="count">
-          <span>Mi carrito </span><a [routerLink]="['/checkout']" routerLinkActive="router-link-active" *ngIf="isLoggedIn"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i></a>
+          <span>Mi carrito </span><a [routerLink]="['/checkout']" routerLinkActive="router-link-active"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i></a>
         </nz-badge>
     </li>
     <!-- <li class="menu__option" nz-menu-item><span>Hola,  </span> <i nz-icon nzType="user" nzTheme="outline"></i></a></li> -->

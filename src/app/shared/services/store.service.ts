@@ -21,8 +21,9 @@ export class StoreService {
     return userRef.get();
   } 
 
-  public getCart() {
-    const cartRef: AngularFirestoreCollection<any> = this.afs.collection('carts', ref => ref.where('id_user', '==', this.auhtService.user.uid));
+  public getCart(id = null) {
+    const uid = id === null ? id = this.auhtService.user.uid : id; 
+    const cartRef: AngularFirestoreCollection<any> = this.afs.collection('carts', ref => ref.where('id_user', '==', uid));
     return cartRef.get();
   }
   
