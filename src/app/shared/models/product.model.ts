@@ -3,4 +3,5 @@ export class Product {
     name: String
     description: String
     url_img: String
+    quantity: number
 }

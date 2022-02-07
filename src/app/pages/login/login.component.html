@@ -1,20 +1,23 @@
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="SignIn()">
-  <nz-form-item>
-    <nz-form-control nzErrorTip="Valor no válida para correo electrónico!">
-      <nz-input-group nzPrefixIcon="user">
-        <input type="email" nz-input formControlName="userName" placeholder="Email" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-control nzErrorTip="¡Por favor ingrese su contraseña!">
-      <nz-input-group nzPrefixIcon="lock">
-        <input type="password" nz-input formControlName="password" placeholder="Password" />
-      </nz-input-group>
-    </nz-form-control>
-  </nz-form-item>
-  <div nz-row class="login-form-margin">
-  </div>
-  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Iniciar sesión</button>
-  Or <a> register now! </a>
-</form>
+<nz-content nz-row nzJustify="center" nzAlign="middle" class="global__height--100">
+  <nz-card class="login__inner-content">
+    <h1 class="login__title">Para iniciar sesión, ingresa tu e-mail y contraseña</h1>
+    <form nz-form [formGroup]="validateForm" class="login__form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Revisa tu e-mail">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input z formControlName="userName" placeholder="e-mail" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Revisa tu contraseña">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="contraseña" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="login__form-button login__form-margin--botton" [nzType]="'primary'">Ingresar</button>
+      <a class="login__form-link" href="/create-account">Crear una cuenta</a>
+    </form>
+  </nz-card>
+</nz-content>

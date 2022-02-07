@@ -1,0 +1,39 @@
+.create-account__title{
+    font-size: 1.5rem;
+    letter-spacing: -0.04rem;
+    overflow-wrap: break-word;
+    line-height: 1.25;
+  }
+  
+.create-account__inner-content {
+  width: 400px;
+  padding: 24px;
+  background: white;
+  min-height: 360px;
+  margin: 0 auto;
+  border: 1px solid var(--border-color);
+}
+
+.create-account__form {
+  max-width: 300px;
+}
+
+.create-account__form-margin--botton {
+  margin-bottom: 16px;
+}
+
+.create-account__form-forgot {
+  float: right;
+}
+
+.create-account__form-button {
+  width: 100%;
+}
+
+.create-account__form-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}
+  

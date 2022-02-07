@@ -1,16 +1,24 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from "./shared/guards/auth.guard";
+import { RouterModule, Routes } from '@angular/router';
+import { CreateAccountComponent } from './pages/create-account/create-account.component';
+import { Error404Component } from './pages/error404/error404.component';
+import { LoginComponent } from './pages/login/login.component';
+
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: '/store' },
-  { path: 'checkout', loadChildren: () => import('./pages/checkout/checkout.module').then(m => m.CheckoutModule), canActivate: [AuthGuard] },
-  { path: 'login', loadChildren: () => import('./pages/login/login.module').then(m => m.LoginModule)},
-  { path: 'store', loadChildren: () => import('./pages/store/store.module').then(m => m.StoreModule)},
-  { path: 'create-account', loadChildren: () => import('./pages/create-account/create-account.module').then(m => m.CreateAccountModule) },
+ 
+  { path: '', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule) },
+  { path: 'login', component: LoginComponent },
+  { path: 'create-account', component: CreateAccountComponent },
+  { path: 'not-found', component: Error404Component },
+  { path: '**', redirectTo: '/not-found' },
+
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+
+
+}

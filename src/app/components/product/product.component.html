@@ -1,9 +1,0 @@
-<nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate" [nzActions]="[actionEllipsis]">
-  <nz-card-meta nzTitle="{{data.name}}" nzDescription="{{data.description}}"></nz-card-meta>
-</nz-card>
-<ng-template #coverTemplate>
-  <img alt="example" src="{{data.url_img}}" />
-</ng-template>
-<ng-template #actionEllipsis >
-  <span (click)="addToCart(data)"> Agregar al carrito <i nz-icon nzType="shopping-cart"></i></span>
-</ng-template>

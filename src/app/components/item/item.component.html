@@ -1,0 +1,44 @@
+
+
+<nz-content class="product__content">
+  <nz-card class="product__content--item" [nzCover]="coverTemplate" [nzActions]="[actionSetting]">
+    <nz-card-meta nzTitle="{{ data.name }}" nzDescription="{{ data.description }}" ></nz-card-meta>
+    <ng-template #coverTemplate>
+      <img class="product__img" alt="example" src="{{data.url_img}}" />
+    </ng-template>
+    <ng-template #actionSetting>
+     <button class="product__button" [disabled]="!isLoggedIn" (click)="showModal()">Agregar al carrito<i nz-icon nzType="shopping-cart"></i></button>
+    </ng-template>
+  </nz-card>
+</nz-content>
+
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzTitle]="modalTitle"
+  [nzContent]="modalContent"
+  [nzFooter]="modalFooter"
+  (nzOnCancel)="handleCancel()"
+  class="modal"
+>
+  <ng-template #modalTitle>Agregar producto al carrito</ng-template>
+  <ng-template #modalContent>
+    <nz-card [nzCover]="coverTemplate" [nzActions]="[actionEdit]">
+      <nz-card-meta nzTitle="{{data.name}}" nzDescription="{{ data.description }}" >
+    </nz-card-meta>
+    </nz-card>
+    <ng-template class="product__content-img" #coverTemplate>
+      <img  alt="example" src="{{data.url_img}}" />
+    </ng-template>
+    <ng-template #actionEdit>
+      <span>Ingresa la cantidad deseada </span>
+      <nz-input-number [(ngModel)]="quantity" [nzMin]="1" [nzMax]="10" [nzStep]="1" [nzPlaceHolder]="'Digita'"></nz-input-number>
+    </ng-template>
+  </ng-template>
+  <ng-template #modalFooter>
+    <button nz-button nzType="default" (click)="handleCancel()">Cancelar</button>
+    <button [disabled]="!quantity" nz-button nzType="primary" (click)="addToCart(data)" >Confirmar</button>
+  </ng-template>
+</nz-modal>
+  
+
+

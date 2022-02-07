@@ -1,0 +1,39 @@
+.login__title{
+  font-size: 1.5rem;
+  letter-spacing: -0.04rem;
+  overflow-wrap: break-word;
+  line-height: 1.25;
+}
+
+.login__inner-content {
+  width: 400px;
+  padding: 24px;
+  background: white;
+  opacity: 0.8;
+  min-height: 360px;
+  margin: 0 auto;
+  border: 1px solid var(--border-color);
+}
+
+.login__form {
+  max-width: 300px;
+}
+
+.login__form-margin--botton {
+  margin-bottom: 16px;
+}
+
+.login__form-forgot {
+  float: right;
+}
+
+.login__form-button {
+  width: 100%;
+}
+
+.login__form-link {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-weight: 500;
+}

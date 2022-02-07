@@ -1,12 +1,11 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User } from "../models/user";
+import { User } from "@shared/models/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import { NzModalService } from 'ng-zorro-antd/modal';
-// import { increment, decrement, reset } fro../../app.actionsons';
 import { Store } from '@ngrx/store';
-import { createSession, removeSession } from 'src/app/app.actions';
+import { createSession, removeSession } from 'app/app.actions';
 @Injectable({
   providedIn: 'root'
 })
@@ -36,7 +35,7 @@ export class AuthService {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
         this.ngZone.run(() => {
-          this.router.navigate(['store']);
+          this.router.navigate(['']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -52,7 +51,7 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         this.SetUserData(result.user);
-        this.router.navigate(['store']);
+        this.router.navigate(['']);
       }).catch((error) => {
         this.modal.error({
           nzTitle: 'This is an error message',

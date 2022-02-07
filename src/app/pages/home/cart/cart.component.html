@@ -1,0 +1,10 @@
+<nz-content nz-row>
+    <div nz-row class="global__width--100" style="overflow: hidden;">
+        <div class="product__content" *ngFor="let item of showproducts">
+            <app-item-cart [cart]="item"></app-item-cart>
+        </div>
+    </div>
+    <div class="container__button">
+        <button (click)="completedCart()" class="product__btn" nz-button nzType="primary" nzBlock>Completar el carrito !</button>
+    </div>
+</nz-content>

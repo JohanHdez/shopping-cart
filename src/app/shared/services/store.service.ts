@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
-import { Cart } from 'src/app/shared/models/cart.model';
 import { AuthService } from './auth.service';
-import { docJoin, leftJoin, leftJoinDocument } from './docJoin';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +19,7 @@ export class StoreService {
 
   public getCart(id = null) {
     const uid = id === null ? id = this.auhtService.user.uid : id; 
-    const cartRef: AngularFirestoreCollection<any> = this.afs.collection('carts', ref => ref.where('id_user', '==', uid));
+    const cartRef: AngularFirestoreCollection<any> = this.afs.collection('carts', ref => ref.where('id_user', '==', uid).where('status', '==', 'Pending'));
     return cartRef.get();
   }
   
@@ -42,11 +38,14 @@ export class StoreService {
       const cartRef: AngularFirestoreDocument<any> = this.afs.doc(`carts/${valcart.docs[0].id}`);
       cartRef.get().subscribe(val => {
         const actual = val.data().products;
-        actual.push(cart)
+        const data = actual.filter(item => {
+          return item.id != cart.id
+        })
+        data.push(cart)
         const cartData = {
           id: cart.id,
           status: 'Pending',
-          products: actual
+          products: data
         }
         return cartRef.set(cartData, {
           merge: true
@@ -90,9 +89,30 @@ export class StoreService {
         });
         const cartData = {
           id: cart.id,
+          status: 'Pending',
+          products: actual
+        }
+        return cartRef.set(cartData, {
+          merge: true
+      });
+      });
+    });
+  }
+
+  completedCart() {
+    this.getCart().subscribe(valcart  => {
+      const cartRef: AngularFirestoreDocument<any> = this.afs.doc(`carts/${valcart.docs[0].id}`);
+      cartRef.get().subscribe(val => {
+        const actual = val.data().products;
+        const cartData = {
           status: 'Completed',
           products: actual
         }
+        this.afs.collection('carts').add({
+          id_user:this.auhtService.user.uid,
+          products:[],
+          status: 'Pending'
+        })
         return cartRef.set(cartData, {
           merge: true
       });

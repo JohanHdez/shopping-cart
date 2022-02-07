@@ -1,20 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/shared/services/auth.service';
+import { AuthService } from '@shared/services/auth.service';
+
 @Component({
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
-  styleUrls: ['./create-account.component.css']
+  styleUrls: ['./create-account.component.scss']
 })
 export class CreateAccountComponent implements OnInit {
+  public validateForm!: FormGroup;
 
-  validateForm!: FormGroup;
+  constructor(private fb: FormBuilder, private authService: AuthService) { }
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      email: [null, [Validators.required, Validators.email]],
+      name: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(30)]],
+      password: [null, [Validators.required, Validators.minLength(4), Validators.maxLength(30)]]
+    });
+  }
 
-  submitForm(): void {
+  public submitForm(): void {
     if (this.validateForm.valid) {
-      this.authService.SignUp(this.validateForm.value.userName, this.validateForm.value.password)
+      this.authService.SignUp(this.validateForm.value.email, this.validateForm.value.password)
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -23,15 +31,6 @@ export class CreateAccountComponent implements OnInit {
         }
       });
     }
-  }
-
-
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      userName: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required]]
-    });
   }
 
 }

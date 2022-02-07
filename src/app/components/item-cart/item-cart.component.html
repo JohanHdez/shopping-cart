@@ -1,0 +1,15 @@
+<nz-card style="width:300px;" [nzCover]="coverTemplate" [nzActions]="[actionSetting, actionEdit, actionEllipsis]">
+    <nz-card-meta nzTitle="{{cart.name}}" nzDescription="Ingrese la cantidad deseada" ></nz-card-meta>
+</nz-card>
+<ng-template #coverTemplate>
+    <img class="product__img" alt="example" src="{{cart.url_img}}" />
+</ng-template>
+<ng-template #actionSetting>
+    <button (click)="removeFromCart(cart)"><i nz-icon nzType="close"></i></button>
+</ng-template>
+<ng-template #actionEdit>
+    <nz-input-number [(ngModel)]="quantity" [nzMin]="1" [nzMax]="10" [nzStep]="1" [nzPlaceHolder]="'Digita'"></nz-input-number>
+</ng-template>
+<ng-template #actionEllipsis>
+    <button (click)="shoppingArticle(cart)"><i nz-icon nzType="edit"></i></button>
+</ng-template>

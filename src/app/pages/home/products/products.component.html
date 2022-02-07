@@ -1,0 +1,8 @@
+<nz-content nz-row>
+  <div nz-row nzJustify="center" class="global__width--100" style="overflow: hidden;">
+    <ng-template ngFor let-item [ngForOf]="productsList">
+      <app-item [data]="item"></app-item>
+    </ng-template>
+
+  </div>
+</nz-content>

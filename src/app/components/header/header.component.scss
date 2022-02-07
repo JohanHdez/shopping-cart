@@ -1,0 +1,15 @@
+#header {
+  background-color: white;
+  height: 90px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header__logo {
+  width: 100px;
+  margin: 14px 28px 14px 0;
+  float: left;
+
+  img {
+    width: 100%;
+  }
+}

@@ -1,0 +1,33 @@
+<ul nz-menu nzTheme="light" nzMode="horizontal" class="menu__ul">
+  <li nz-menu-item class="menu__li" *ngIf="isLoggedIn">
+    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+      <i nz-icon nzType="user"></i>
+      {{user.email}}
+      <i nz-icon nzType="down"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu">
+      <ul nz-menu>
+        <li nz-menu-item (click)="signOut()">Salir</li>
+      </ul>
+    </nz-dropdown-menu>
+  </li>
+  <li nz-menu-item class="menu__li">
+    <a routerLink="/">
+      Productos
+    </a>
+  </li>
+  <li nz-menu-item class="menu__li" *ngIf="!isLoggedIn">
+    <a [routerLink]="['/create-account']" routerLinkActive="router-link-active">Crear cuenta</a>
+  </li>
+  <li nz-menu-item class="menu__li" *ngIf="!isLoggedIn">
+    <a [routerLink]="['/login']" routerLinkActive="router-link-active">Ingresar</a>
+  </li>
+  <li nz-menu-item class="menu__li" *ngIf="isLoggedIn">
+    <nz-badge [nzCount]="count">
+      <a [routerLink]="['/cart']" routerLinkActive="router-link-active"><i nz-icon nzType="shopping-cart" nzTheme="outline"></i></a>
+    </nz-badge>
+    <!-- <a routerLink="/cart">
+      <nz-badge nzDot [nzCount]="count"><i nz-icon nzType="shopping-cart"></i></nz-badge>
+    </a> -->
+  </li>
+</ul>

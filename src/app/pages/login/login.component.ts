@@ -1,18 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from "../../shared/services/auth.service";
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  validateForm!: FormGroup;
+  public validateForm!: FormGroup;
 
-
-  constructor(private fb: FormBuilder,
-    public authService: AuthService) {}
+  constructor(private fb: FormBuilder, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -21,7 +19,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  SignIn(): void {
+  public submitForm(): void {
     if (this.validateForm.valid) {
       this.authService.SignIn(this.validateForm.value.userName, this.validateForm.value.password)
     } else {
@@ -33,5 +31,4 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
 }

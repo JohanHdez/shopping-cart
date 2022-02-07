@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --background-color: #f3f3f3;
+  --primary-color: #115b56;
+  --border-color: #dcdcdc;
+  --pink-color: #f5accd;
+  --light-pink-color: #f9d0e3;
+  --yellow-color: #ede529;
+  --light-yellow-color: #fbf782;
+  --blue-color: #71c8ef;
+  --light-blue-color: #9fdaf4;
+  --purple-color: #978fc8;
+  --light-purple-color: #bdb8dc;
+  --orange-color: #fdd28c;
+  --light-orange-color: #fdd28c;
+  --green-color: #52b9a5;
+  --light-green-color: #97ebdb;
+}
+
+body {
+  background-color: var(--background-color);
+}
+
+.global__width--100 {
+  width: 100%;
+}
+
+.global__width--vw {
+  width: 100vw;
+}
+
+.global__height--100 {
+  height: 100%;
+  background-image: url(https://tul.com.co/assets/img/intersection116.png);
+  display: flex;
+  flex-direction: column;
+  padding: 19px;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 56vw 0vh;
+  background-size: contain;
+}
+
+.global__layout {
+  min-height: 100vh;
+}
+
+.ant-menu-horizontal:not(.ant-menu-dark)>.ant-menu-item-selected::after {
+  border-bottom: 0px solid transparent !important
+}
+
+.menu__li {
+  &:hover {
+    &::after {
+      border-bottom: 0px solid red !important;
+    }
+
+    a {
+      color: var(--green-color) !important;
+    }
+  }
+
+  &:not(:hover) {
+    a {
+      color: black !important;
+    }
+
+    &::after {
+      border-bottom: 0px solid red !important;
+    }
+  }
+}

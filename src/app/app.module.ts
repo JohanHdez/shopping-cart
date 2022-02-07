@@ -1,61 +1,58 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './layout/header/header.component';
-import { CommonModule, registerLocaleData } from '@angular/common';
-import en from '@angular/common/locales/en';
-import { FormsModule } from '@angular/forms';
-import { HttpClientJsonpModule, HttpClientModule } from '@angular/common/http';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { es_ES } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import es from '@angular/common/locales/es';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginModule } from './pages/login/login.module';
-import { NgZorroAntdModule } from './ng-zorro-antd.module';
-import { IconDefinition } from '@ant-design/icons-angular';
-import * as AllIcons from '@ant-design/icons-angular/icons';
-import { NZ_ICONS } from 'ng-zorro-antd/icon';
-import { NZ_I18N, en_US } from 'ng-zorro-antd/i18n';
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { MenuComponent } from '@components/menu/menu.component';
+import { HeaderComponent } from '@components/header/header.component';
+import { NgZorroModule } from '@shared/modules/ngzorro.module';
+import { FooterComponent } from '@components/footer/footer.component';
+import { HomeComponent } from '@pages/home/home.component';
+import { Error404Component } from '@pages/error404/error404.component';
+import { LoginComponent } from '@pages/login/login.component';
+import { CreateAccountComponent } from '@pages/create-account/create-account.component';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { icons } from '@shared/modules/icons.module';
+import { environment } from '@environment/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { environment } from '../environments/environment';
-import { CreateAccountModule } from './pages/create-account/create-account.module';
-
-// ngrx related imports
 import { StoreModule } from '@ngrx/store';
 import { authReducer, cartsReducer } from './app.reducer';
+// import { CarouselComponent } from './components/carousel/carousel.component';
 
-
-registerLocaleData(en);
-
-const antDesignIcons = AllIcons as {
-  [key: string]: IconDefinition;
-};
-const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesignIcons[key])
-
+registerLocaleData(es);
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    MenuComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    Error404Component,
+    LoginComponent,
+    CreateAccountComponent,
   ],
   imports: [
     BrowserModule,
-    CommonModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
-    FormsModule,
     HttpClientModule,
-    HttpClientJsonpModule,
-    LoginModule,
-    NgZorroAntdModule,
+    BrowserAnimationsModule,
+    NgZorroModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    CreateAccountModule,
+    NzIconModule.forRoot(icons),
     StoreModule.forRoot({ auth: authReducer, cart: cartsReducer })
   ],
-  providers: [{ provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }],
+  providers: [{ provide: NZ_I18N, useValue: es_ES }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

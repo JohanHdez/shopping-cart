@@ -1,0 +1,18 @@
+<div nz-row nzJustify="center" nzAlign="middle" class="global__height--100">
+  <nz-empty 
+    nzNotFoundImage="https://cdn-icons-png.flaticon.com/512/1547/1547183.png"
+    [nzNotFoundContent]="contentTpl" 
+    [nzNotFoundFooter]="footerTpl">
+    <ng-template #contentTpl>
+      <h2>Error 404</h2>
+      <span>
+        Parece que la página que busca no existe :(
+      </span>
+    </ng-template>
+    <ng-template #footerTpl>
+     <a href="/">
+       Ir a la página principal
+     </a>
+    </ng-template>
+  </nz-empty>
+</div>

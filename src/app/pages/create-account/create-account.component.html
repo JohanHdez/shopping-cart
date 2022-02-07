@@ -1,25 +1,30 @@
-<h2>Crear cuenta</h2>
-<form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your username!">
-        <nz-input-group nzPrefixIcon="user">
-          <input type="text" nz-input formControlName="userName" placeholder="Username" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-control nzErrorTip="Please input your Password!">
-        <nz-input-group nzPrefixIcon="lock">
-          <input type="password" nz-input formControlName="password" placeholder="Password" />
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-    <div nz-row class="login-form-margin">
-      <div nz-col [nzSpan]="12">
-        <label nz-checkbox formControlName="remember">
-          <span>Remember me</span>
-        </label>
-      </div>
-    </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Registrarme</button>
-  </form>
+<nz-content nz-row nzJustify="center" nzAlign="middle" class="global__height--100">
+  <nz-card class="create-account__inner-content">
+    <h1 class="create-account__title">Para seguir, ingresa tu e-mail, nombre y contraseña</h1>
+    <form nz-form [formGroup]="validateForm" class="create-account__form" (ngSubmit)="submitForm()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Revisa tu e-mail">
+          <nz-input-group nzPrefixIcon="mail">
+            <input type="text" nz-input z formControlName="email" placeholder="e-mail" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Revisa tu nombre">
+          <nz-input-group nzPrefixIcon="user">
+            <input type="text" nz-input z formControlName="name" placeholder="nombre" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Revisa tu contraseña">
+          <nz-input-group nzPrefixIcon="lock">
+            <input type="password" nz-input formControlName="password" placeholder="contraseña" />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button nz-button class="create-account__form-button create-account__form-margin--botton" [nzType]="'primary'">Crear Cuenta</button>
+      <a class="create-account__form-link" href="/login">¿Ya tienes una cuenta?</a>
+    </form>
+  </nz-card>
+</nz-content>
