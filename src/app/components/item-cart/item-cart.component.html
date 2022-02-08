@@ -8,7 +8,7 @@
     <button (click)="removeFromCart(cart)"><i nz-icon nzType="close"></i></button>
 </ng-template>
 <ng-template #actionEdit>
-    <nz-input-number [(ngModel)]="quantity" [nzMin]="1" [nzMax]="10" [nzStep]="1" [nzPlaceHolder]="'Digita'"></nz-input-number>
+    <nz-input-number [(ngModel)]="quantity" [nzMin]="1" [nzStep]="1" [nzPlaceHolder]="'Digita'"></nz-input-number>
 </ng-template>
 <ng-template #actionEllipsis>
     <button (click)="shoppingArticle(cart)"><i nz-icon nzType="edit"></i></button>

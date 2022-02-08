@@ -4,7 +4,7 @@
             <app-item-cart [cart]="item"></app-item-cart>
         </div>
     </div>
-    <div class="container__button">
+    <div *ngIf="showproducts.length != 0" class="container__button">
         <button (click)="completedCart()" class="product__btn" nz-button nzType="primary" nzBlock>Completar el carrito !</button>
     </div>
 </nz-content>
